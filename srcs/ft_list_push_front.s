@@ -16,10 +16,10 @@ _ft_list_push_front:
     pop     rdi
     cmp     rax, 0
     je      .return
-    mov     rdx, qword [rdi]
+    mov     rdx, qword [rdi]		;check if rdi is NULL
     cmp     rdx, 0
-    je      .empty_list
-    mov     qword [rax + 8], rdx
+    je      .empty_list				;if list isnt empty point to next
+    mov     qword [rax + 8], rdx	
 .empty_list:
     mov     qword [rdi], rax
 .return:

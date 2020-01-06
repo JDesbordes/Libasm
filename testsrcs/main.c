@@ -6,12 +6,30 @@
 /*   By: jdesbord <jdesbord@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/15 01:58:15 by jdesbord     #+#   ##    ##    #+#       */
-/*   Updated: 2019/12/17 12:16:32 by jdesbord    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/06 17:22:01 by jdesbord    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "main.h"
+
+int		ft_cmp(char *s1, char *s2)
+{
+	static int i = 0;
+	i++;
+	if (!s1 || !s2)
+		return (0);
+	while (*s1 && *s2)
+	{
+		if (*s1 != *s2)
+		{
+			return (*(unsigned char *)s1 - *(unsigned char *)s2);
+		}
+		++s1;
+		++s2;
+	}
+	return (*(unsigned char *)s1 - *(unsigned char *)s2);
+}
 
 int		main(void)
 {
@@ -23,18 +41,40 @@ int		main(void)
 	
 	str3 = strdup("str");
 	str2 = strdup("banana\n");
-	str = malloc(sizeof(char) * 21);
 	ft_list_push_front(&lst, (void *)str3);
-	dprintf(1, "%s\n",lst->data);
+	dprintf(1, "DATA : %s\n",lst->data);
+	dprintf(1, "%p\n",lst);
+	str3 = strdup("str1");
+	ft_list_push_front(&lst, (void *)str3);
+	dprintf(1, "DATA : %s\n",lst->data);
 	dprintf(1, "%p\n",lst);
 	str3 = strdup("str2");
 	ft_list_push_front(&lst, (void *)str3);
-	dprintf(1, "%s\n",lst->data);
+	dprintf(1, "DATA : %s\n",lst->data);
+	dprintf(1, "%p\n",lst);
+	str3 = strdup("str3");
+	ft_list_push_front(&lst, (void *)str3);
+	dprintf(1, "DATA : %s\n",lst->data);
+	dprintf(1, "%p\n",lst);
+	str3 = strdup("str4");
+	ft_list_push_front(&lst, (void *)str3);
+	dprintf(1, "DATA : %s\n",lst->data);
+	dprintf(1, "%p\n",lst);
+	str3 = strdup("str5");
+	ft_list_push_front(&lst, (void *)str3);
+	dprintf(1, "DATA : %s\n",lst->data);
 	dprintf(1, "%p\n",lst);
 	dprintf(1, "number of maillon = %d\n", ft_list_size(lst));
-	dprintf(1, "!!!!!   WRITE   !!!!!\n");
+	ft_list_sort(&lst, ft_cmp);
+	while (lst)
+	{
+		dprintf(1, "\n%s",lst->data);
+		lst = lst->next;
+	}
+	/*dprintf(1, "!!!!!   WRITE   !!!!!\n");
 	ft_write(1, "THIS IS BANANAS\n", 16);
 	dprintf(1, "!!!!!   READ    !!!!!\n");
+	str = malloc(sizeof(char) * 21);
 	dprintf(1, "%zd\n", i = ft_read(0, str, 20));
 	str[i] = '\0';
 	dprintf(1, "%s\n", str);
@@ -64,6 +104,6 @@ int		main(void)
 	printf("%d\n", ft_atoi_base("ddd", "0123456789abcd"));
 	printf("%d\n", ft_atoi_base("eee", "0123456789abcde"));
 	printf("%d\n", ft_atoi_base("ff", "0123456789abcdef"));
-	printf("%d\n", ft_atoi_base("ggg", "0123456789abcdefg"));
+	printf("%d\n", ft_atoi_base("ggg", "0123456789abcdefg"));*/
 	return (0);
 }
