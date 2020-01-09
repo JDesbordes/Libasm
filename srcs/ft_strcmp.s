@@ -5,6 +5,7 @@ section .text
 
 _ft_strcmp:
 	push rbp
+	push rbx
 	mov rbp, rsp
 
 	xor rcx, rcx
@@ -24,5 +25,6 @@ _ft_strcmp:
 	movzx rax, BYTE [rdi]
 	movzx rbx, BYTE [rsi]
 	sub rax, rbx
+	pop rbx
 	pop rbp
 	ret

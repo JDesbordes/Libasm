@@ -15,7 +15,11 @@ _ft_list_sort:
 	mov	    rcx,    qword	[r12]
     mov     rdi,	qword	[rcx]
 	mov		r14,	qword	[r12]
+	cmp		r14,	0
+	je		.return
 	mov		r14,	qword	[r14 + 8]
+	cmp		r14,	0
+	je		.return
 	mov		rsi,	qword	[r14]
 	call	r13
 	cmp		ax,	0
@@ -53,8 +57,6 @@ _ft_list_sort:
 	mov		r15,	qword [r14 + 8]
 	mov		qword	[rbx + 8],	r15
 	mov		qword	[r14 + 8],	rbx
-
-	;jmp			.return
 	jmp			.Loop1
 
 .next:

@@ -6,7 +6,7 @@
 /*   By: jdesbord <jdesbord@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2019/12/15 01:58:15 by jdesbord     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/06 17:22:01 by jdesbord    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/09 03:52:15 by jdesbord    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -31,11 +31,23 @@ int		ft_cmp(char *s1, char *s2)
 	return (*(unsigned char *)s1 - *(unsigned char *)s2);
 }
 
+void	balec(void	*viteeff)
+{
+	if (viteeff)
+		free (viteeff);
+}
+
+int		balec2(char *s1, char *s2)
+{
+	return(0);
+}
+
 int		main(void)
 {
 	char	*str;
 	char	*str2;
 	t_list	*lst;
+	t_list	*temp;
 	char *str3;
 	int i;
 	
@@ -66,12 +78,64 @@ int		main(void)
 	dprintf(1, "%p\n",lst);
 	dprintf(1, "number of maillon = %d\n", ft_list_size(lst));
 	ft_list_sort(&lst, ft_cmp);
-	while (lst)
+	dprintf(1,"\nSort lst");
+	temp = lst;
+	while (temp)
 	{
-		dprintf(1, "\n%s",lst->data);
-		lst = lst->next;
+		dprintf(1, "\n%s",temp->data);
+		temp = temp->next;
 	}
-	/*dprintf(1, "!!!!!   WRITE   !!!!!\n");
+	ft_list_remove_if(&lst,	"str4", ft_cmp, balec);
+	dprintf(1,"\n\nRemove str4");
+	temp = lst;
+	while (temp)
+	{
+		dprintf(1, "\n%s",temp->data);
+		temp = temp->next;
+	}
+	ft_list_remove_if(&lst,	"str", ft_cmp, balec);
+	dprintf(1,"\n\nRemove str");
+	temp = lst;
+	while (temp)
+	{
+		dprintf(1, "\n%s",temp->data);
+		temp = temp->next;
+	}
+	ft_list_remove_if(&lst,	0, ft_cmp, balec);
+	dprintf(1,"\n\nRemove 0");
+	temp = lst;
+	while (temp)
+	{
+		dprintf(1, "\n%s",temp->data);
+		temp = temp->next;
+	}
+	ft_list_remove_if(&lst,	"ble", balec2, balec);
+	dprintf(1,"\n\nRemove all");
+	temp = lst;
+	while (temp)
+	{
+		dprintf(1, "\n%s",temp->data);
+		temp = temp->next;
+	}
+	str3 = strdup("Surprise");
+	ft_list_push_front(&lst, (void *)str3);
+	ft_list_remove_if(&lst,	"str", ft_cmp, balec);
+	dprintf(1,"\n\nRemove str");
+	temp = lst;
+	while (temp)
+	{
+		dprintf(1, "\n%s",temp->data);
+		temp = temp->next;
+	}
+	ft_list_sort(&lst, ft_cmp);
+	dprintf(1,"\n\nRemove str");
+	temp = lst;
+	while (temp)
+	{
+		dprintf(1, "\n%s",temp->data);
+		temp = temp->next;
+	}
+	dprintf(1, "!!!!!   WRITE   !!!!!\n");
 	ft_write(1, "THIS IS BANANAS\n", 16);
 	dprintf(1, "!!!!!   READ    !!!!!\n");
 	str = malloc(sizeof(char) * 21);
@@ -104,6 +168,6 @@ int		main(void)
 	printf("%d\n", ft_atoi_base("ddd", "0123456789abcd"));
 	printf("%d\n", ft_atoi_base("eee", "0123456789abcde"));
 	printf("%d\n", ft_atoi_base("ff", "0123456789abcdef"));
-	printf("%d\n", ft_atoi_base("ggg", "0123456789abcdefg"));*/
+	printf("%d\n", ft_atoi_base("ggg", "0123456789abcdefg"));
 	return (0);
 }
